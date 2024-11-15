@@ -1,0 +1,187 @@
+body {
+    background-color: var(--body-color); /* Matching the sidebar body color */
+    font-family: 'Poppins', sans-serif;  /* Use the same font as sidebar */
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 250px; /* Default padding saat sidebar terbuka */
+    transition: padding-left 0.3s ease; /* Transisi halus saat sidebar bergerak */
+    padding-top: 20px; /* Tambahkan sedikit padding atas */
+}
+
+.sidebar.close + .container {
+    padding-left: 70px; /* Padding kecil saat sidebar ditutup */
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary-color); /* Matching the primary color from sidebar */
+    margin: 0; /* Hilangkan margin default */
+    padding-top: 10px; /* Berikan jarak ke atas agar lebih proporsional */
+    font-size: 3em; /* Ukuran font disesuaikan agar lebih proporsional */
+}
+
+.border {
+    border: 1px solid var(--primary-color-light); /* Light primary color */
+    padding: 20px;
+    text-align: center;
+    width: 60%;
+    margin: 10px 0; /* Kurangi margin untuk mengurangi jarak antar soal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--sidebar-color); /* Sidebar background */
+    box-shadow: 0 0 15px rgba(105, 92, 254, 0.5); /* Adjusted shadow to match primary tone */
+    position: relative;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+    border: none;
+}
+
+#submitButton1, #submitButton2, #submitButton3, #submitButton4, #submitButton5 {
+    background-color: var(--primary-color);
+    margin-top: 10px;
+}
+
+#submitButton1:hover, #submitButton2:hover, #submitButton3:hover, #submitButton4:hover, #submitButton5:hover {
+    background-color: #5945cc; /* Darker version of primary color */
+}
+
+#toggleButton1, #toggleButton2, #toggleButton3, #toggleButton4, #toggleButton5 {
+    background-color: var(--sidebar-color); /* Sidebar background */
+    color: var(--primary-color); /* Primary color for text */
+    margin-top: 10px;
+}
+
+#toggleButton1:hover, #toggleButton2:hover, #toggleButton3:hover, #toggleButton4:hover, #toggleButton5:hover {
+    background-color: var(--primary-color-light); /* Light version of primary color */
+}
+
+input {
+    margin-top: 10px;
+    padding: 10px;
+    width: 80%;
+    border: 2px solid var(--primary-color-light); /* Light primary color */
+    font-size: 16px;
+    background-color: var(--sidebar-color); /* Sidebar background */
+    color: var(--text-color); /* Text color matching sidebar */
+}
+
+p {
+    font-size: 25px;
+    color: var(--primary-color); /* Primary color */
+}
+
+#jawabanUser1, #jawabanUser2, #jawabanUser3, #jawabanUser4, #jawabanUser5 {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.materi {
+    border: 1px dotted var(--primary-color); /* Primary color */
+    background-color: var(--primary-color-light); /* Light version of primary color */
+    padding: 10px;
+    width: 80%;
+    font-size: 14px;
+    color: var(--text-color); /* Sidebar text color */
+    margin-top: 10px;
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.materiButton {
+    background-color: var(--primary-color-light); /* Light primary color */
+    color: var(--primary-color); 
+    margin-top: 10px;
+}
+
+.materiButton:hover {
+    background-color: var(--primary-color); /* Primary color */
+    color: var(--sidebar-color); /* Sidebar color for hover effect */
+}
+
+#penjelasan1, #penjelasan2, #penjelasan3, #penjelasan4, #penjelasan5 {
+    color: var(--text-color); /* Text color from sidebar */
+    font-size: 12px;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px; /* Ubah ukuran sidebar di layar kecil */
+    }
+
+    .sidebar.close {
+        width: 60px; /* Ubah ukuran sidebar saat ditutup di layar kecil */
+    }
+
+    .container {
+        padding-left: 200px; /* Ubah padding di layar kecil saat sidebar terbuka */
+    }
+
+    .sidebar.close + .container {
+        padding-left: 60px; /* Ubah padding di layar kecil saat sidebar ditutup */
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding-left: 0; /* Hapus padding di layar sangat kecil */
+    }
+
+    .sidebar {
+        width: 100%; /* Sidebar mengambil lebar penuh di layar kecil */
+        height: auto;
+    }
+
+    .sidebar.close {
+        width: 100%;
+    }
+}
+
+.materiButton, #toggleButton1, #toggleButton2, #toggleButton3, #toggleButton4, #toggleButton5 {
+    display: none;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.materiButton:hover, [id^="toggleButton"]:hover {
+    background-color: #5046e5;
+}
+
+.hidden {
+    display: none;
+}
+
+.shown {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}

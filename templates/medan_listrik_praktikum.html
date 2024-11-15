@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electric Charge and Force Lab</title>
+    <!-- Link to CSS using Flask's url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='praktikum_style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <h1>Eksperimen Listrik Statis: Gaya Tarik Penggaris Bermuatan</h1>
+    </header>
+
+    <!-- Bagian tahap-tahap -->
+    <div class="steps">
+      <h2>Tahap-tahap Praktikum:</h2>
+      <ol>
+        <li>Drag penggaris</li>
+        <li>Gosok penggaris ke kain wol</li>
+        <li>Lihat apa yang terjadi</li>
+        <li>Dekatkan ke serpihan kertas</li>
+        <li>Lihat apa yang terjadi</li>
+        <li>Berikan kesimpulan</li>
+      </ol>
+    </div>
+
+    <div class="experiment-container">
+      <!-- Area eksperimen -->
+      <div class="experiment-area">
+        <img src="{{ url_for('static', filename='shredded-papers.png') }}" id="serpihan_kertas" alt="serpihan kertas" />
+      </div>
+
+      <!-- Toolbox -->
+      <div class="toolbox">
+        <div class="toolbox-item">
+          <h3>Penggaris</h3>
+          <img id="penggaris" src="{{ url_for('static', filename='penggaris.png') }}" alt="Penggaris" class="in-toolbox" />
+        </div>
+
+        <div class="toolbox-item">
+          <h3>Kain Wol</h3>
+          <img id="kain_wol" src="{{ url_for('static', filename='kain_wol.png') }}" alt="Kain Wol" class="in-toolbox" />
+        </div>
+      </div>
+    </div>
+
+    <div id="chargeTracker">
+      <h3>Muatan Negatif:</h3>
+      <div id="muatanNegatifContainer"></div>
+    </div>
+
+    <div class="conclusion">
+      <h3>Kesimpulan:</h3>
+      <textarea id="conclusionText" placeholder="Tuliskan kesimpulan Anda di sini..."></textarea>
+      <button id="submitConclusion">Submit Kesimpulan</button>
+    </div>
+
+    <script>
+      const muatanNegatifSrc = "{{ url_for('static', filename='muatan_negatif.png') }}";
+    </script>
+    <script src="{{ url_for('static', filename='praktikum_script.js') }}"></script>
+  </body>
+</html>

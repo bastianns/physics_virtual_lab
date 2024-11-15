@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <img src="{{ url_for('static', filename='images/profile_icon.png') }}" class="avatar" alt="Avatar">
+            <h2>Sign Up Here</h2>
+            <form onsubmit="handleSignUp(event)">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter Email" required>
+                
+                <label for="new-username">Username</label>
+                <input type="text" id="new-username" placeholder="Enter Username" required>
+
+                <label for="new-password">Password</label>
+                <input type="password" id="new-password" placeholder="Enter Password" required>
+
+                <button type="submit" class="login-button">Sign Up</button>
+
+                <div class="extra-links">
+                    <a href="#" onclick="showLoginPage()">Already Have an Account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        async function handleSignUp(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+
+            try {
+                const response = await fetch('/sign_up', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, username, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert(data.message); // Optional success message
+                    window.location.href = data.redirect || '/home'; // Redirect on success
+                } else {
+                    alert(data.error || 'Sign up failed. Please try again.');  // Show error if sign-up fails
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>

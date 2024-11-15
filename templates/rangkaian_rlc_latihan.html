@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard & Latihan</title>
+
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='sidebar_style.css') }}"> <!-- Sidebar styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Latihan page styling -->
+
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <!-- Sidebar Section -->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="logo.png" alt="logo">
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">VirtualLab</span>
+                    <span class="profession">Praktikan</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                    <input type="search" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="{{ url_for('home') }}">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    
+                    <li class="nav-link">
+                        <a href="{{ url_for('latihan', material='rangkaian_rlc') }}">
+                            <i class='bx bxs-book-open icon'></i>
+                            <span class="text nav-text">Latihan: Muatan dan Gaya Listrik</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="{{ url_for('praktikum', material='rangkaian_rlc') }}">
+                            <i class='bx bx-test-tube icon'></i>
+                            <span class="text nav-text">Praktikum</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content"></div>
+            <li class="">
+                <a href="{{ url_for('login') }}">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">LogOut</span>
+                </a>
+            </li>
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+                <div class="toggle-switch">
+                    <div class="switch"></div>
+                </div>
+            </li>
+        </div>
+    </nav>
+
+    
+    <div class="container">
+        <h1>Latihan</h1>
+        <div id="scoreDisplay">Skor Anda: <span id="userScore">0</span></div>
+
+        <!-- Soal 1 -->
+        <div class="border">
+            <p id="Soal1"><b>Soal: 2+3?</b></p>
+            <input id="jawabanInput1" type="text" placeholder="Masukkan Jawaban Anda di sini">
+            <button type="button" id="submitButton1" onclick="submitJawaban(1)">Submit Jawaban</button>
+            <button type="button" id="toggleButton1" onclick="toggleAnswer(1)" style="display: none;">Tampilkan Jawaban</button>
+            <p id="jawabanUser1"></p>
+            <button class="materiButton" onclick="toggleMateri(1)" style="display: none;"> Tampilkan Materi</button>
+            <div id="materi1" class="materi hidden">
+                <p id="penjelasan1">Materi Terkait Soal 1: Tolong pelajari mengenai penjumlahan.</p>
+            </div>
+        </div>
+
+        <!-- Soal 2 -->
+        <div class="border">
+            <p id="Soal2"><b>Soal: Berapa kali matahari terbit dalam sehari?</b></p>
+            <input id="jawabanInput2" type="text" placeholder="Masukkan Jawaban Anda di sini">
+            <button type="button" id="submitButton2" onclick="submitJawaban(2)">Submit Jawaban</button>
+            <button type="button" id="toggleButton2" onclick="toggleAnswer(2)" style="display: none;">Tampilkan Jawaban</button>
+            <p id="jawabanUser2"></p>
+            <button class="materiButton" onclick="toggleMateri(2)" style="display: none;">Tampilkan Materi</button>
+            <div id="materi2" class="materi hidden">
+                <p id="penjelasan2">Materi Terkait Soal 2: Matahari terbit hanya sekali dalam sehari, pada pagi hari.</p>
+            </div>
+        </div>
+
+        <!-- Soal 3 -->
+        <div class="border">
+            <p id="Soal3"><b>Soal: Apa ibukota Indonesia?</b></p>
+            <input id="jawabanInput3" type="text" placeholder="Masukkan Jawaban Anda di sini">
+            <button type="button" id="submitButton3" onclick="submitJawaban(3)">Submit Jawaban</button>
+            <button type="button" id="toggleButton3" onclick="toggleAnswer(3)" style="display: none;">Tampilkan Jawaban</button>
+            <p id="jawabanUser3"></p>
+            <button class="materiButton" onclick="toggleMateri(3)" style="display: none;">Tampilkan Materi</button>
+            <div id="materi3" class="materi hidden">
+                <p id="penjelasan3">Materi Terkait Soal 3: Ibukota Indonesia adalah Jakarta.</p>
+            </div>
+        </div>
+
+        <!-- Soal 4 -->
+        <div class="border">
+            <p id="Soal4"><b>Soal: Berapa sisi segitiga?</b></p>
+            <input id="jawabanInput4" type="text" placeholder="Masukkan Jawaban Anda di sini">
+            <button type="button" id="submitButton4" onclick="submitJawaban(4)">Submit Jawaban</button>
+            <button type="button" id="toggleButton4" onclick="toggleAnswer(4)" style="display: none;">Tampilkan Jawaban</button>
+            <p id="jawabanUser4"></p>
+            <button class="materiButton" onclick="toggleMateri(4)" style="display: none;">Tampilkan Materi</button>
+            <div id="materi4" class="materi hidden">
+                <p id="penjelasan4">Materi Terkait Soal 4: Segitiga memiliki tiga sisi.</p>
+            </div>
+        </div>
+
+        <!-- Soal 5 -->
+        <div class="border">
+            <p id="Soal5"><b>Soal: Apa warna langit saat siang?</b></p>
+            <input id="jawabanInput5" type="text" placeholder="Masukkan Jawaban Anda di sini">
+            <button type="button" id="submitButton5" onclick="submitJawaban(5)">Submit Jawaban</button>
+            <button type="button" id="toggleButton5" onclick="toggleAnswer(5)" style="display: none;">Tampilkan Jawaban</button>
+            <p id="jawabanUser5"></p>
+            <button class="materiButton" onclick="toggleMateri(5)" style="display: none;">Tampilkan Materi</button>
+            <div id="materi5" class="materi hidden">
+                <p id="penjelasan5">Materi Terkait Soal 5: Warna langit saat siang hari biasanya biru karena hamburan cahaya.</p>
+            </div>
+        </div>
+    </div>
+
+   
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
